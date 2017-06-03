@@ -1,7 +1,7 @@
 'use strict';
 var express = require("express"),
    exphbs = require("express-handlebars"),
-   cf = require('./public/js/cf'),
+   cf = require('./public/js/testConnectionData'),
     mysql = require('mysql'), 
     myConnection = require('express-myconnection'),
     bodyParser = require('body-parser'),
@@ -10,20 +10,35 @@ var express = require("express"),
     parseurl = require('parseurl'),
     session = require('express-session');
 
+
+
 var path = require('path');
+
 
 path.join(__dirname, '/public/CSS/style.less');
 
 var app = express();
-    
-app.engine("handlebars", exphbs({defaultLayout:"main"}))
-app.set("view engine", "handlebars")
+
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var expressValidator = require('express-validator');
+
+app.use(myConnection(mysql, dbOptions, 'single'));   
+app.engine("handlebars", exphbs({defaultLayout:"main"}));
+//app.engine('handlebars', hbs.engine);
+app.set('views', __dirname + '/views');
+app.set("view engine", "handlebars");
+
+var hbs = require('hbs');
+require('handlebars-form-helpers').register(hbs.handlebars);
+
 app.use(express.static('public'));
 app.use(myConnection(mysql, dbOptions, 'single'));
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(expressValidator()); 
 
 app.set('trust proxy', 1) // trust first proxy 
 app.use(session({

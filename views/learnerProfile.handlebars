@@ -6,6 +6,7 @@
 <!--a href="/"><h1 align="center">SAWIT Learner Details</h1></a--> 
         
     <h3 class="text-center">learners Profile</h3>  
+    {{#if administrator}} 
     <div  class="dropdown">
     	<button type="button" class="dropbtn" >DropDown Search</button>
         <div class="dropdown-content">
@@ -50,6 +51,7 @@
 				{{/learner}}
 	</tbody> 
 </table>
+{{else}}
+      <h1>SORRY, YOU HAVE TO BE ADMININISTRATOR!</h1>
+{{/if}}
 </div>
-
-S

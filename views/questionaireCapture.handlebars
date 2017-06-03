@@ -2,75 +2,77 @@
  <div id="head"> <a href="/"><h1>SAWIT Educate To Empower</h1></a> </div>
 <div  id="add">
 <h2 class="text-center">Capture Learner Questionaire</h2>
+ 
 <button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/learner'">Back To Learner List</button>
-
+<script src="../js/questCapture.js"></script>
  {{#data}}
+ 
  <form id="formAdd" id="questionaireCap" autocomplete="on" action="/questionaireCapture" method="Post">
   <div class="group">
-    <input type="text" placeholder="Id Number" name="Idnumber"  data-bind="value: {{Idnumber}}">
+    <input type="text" placeholder="Id Number" name="Idnumber" value = "{{Idnumber}}">
     <label for="Idnumber">ID Number</label>
   </div>
   <div class="group">
-    <input type="text" placeholder="Surname" name="surname" data-bind="value: {{surname}}">
+    <input type="text" placeholder="Surname" name="surname" value = "{{surname}}">
     <label for="surname">Surname</label>
   </div>
   <div class="group">
-    <input type="text" placeholder="Name" name="Name" data-bind="value: {{Name}}">
+    <input type="text" placeholder="Name" name="Name" value = "{{Name}}">
     <label for="name">Name</label>
   </div></br>
   
   <div class="group">
-    <input type="checkbox" name="fruit" data-bind="value: {{fruit}}">
+    <input type="checkbox" name = "fruit" value = "1" {{#if fruit}}checked="checked"{{/if}}>
     <label for="fruit">fruit</label>
   </div>
   <div class="group">
-    <input type="checkbox"  name="dairy" data-bind="value: {{dairy}}">
+    <input type="checkbox" name = "dairy" value = "1" {{#if dairy}}checked="checked"{{/if}}>
     <label for="dairy">Dairy</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="vegetable" data-bind="value: {{vegetable}}">
+    <input type="checkbox" name = "vegetable" value = "1" {{#if vegetable}}checked="checked"{{/if}}>
     <label for="vegetable">Vegetable</label>
   </div>
   <div class="group">
-    <input type="checkbox"  name="berry" data-bind="value: {{berry}}">
+    <input type="checkbox"  name="berry" value = "1" {{#if berry}}checked="checked"{{/if}}>
     <label for="berry">Berry</label>
   </div>
   <div class="group">
-    <input type="checkbox"  name="deciduous" data-bind="value: {{deciduous}}">
+    <input type="checkbox"  name="deciduous" value = "1" {{#if deciduous}}checked="checked"{{/if}}>
     <label for="deciduous">Deciduous</label>
   </div>
 
   <div class="group">
-    <input type="checkbox"  name="fields" data-bind="value: {{fields}}">
+    <input type="checkbox"  name="fields" value = "1" {{#if fields}}checked="checked"{{/if}}>
     <label for="name">Field</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="wine" data-bind="value: {{wine}}">
+    <input type="checkbox" name="wine" value = "1" {{#if wine}} checked="checked"{{/if}}>
     <label for="name">Wine</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="cellar" data-bind="value: {{cellar}}">
+    <input type="checkbox" name="cellar" value = "1" {{#if cellar}}checked="checked"{{/if}}>
     <label for="name">Cellar</label>
   </div>
 
   <div class="group">
-    <input type="checkbox" name="marketing" data-bind="value: {{marketing}}">
+    <input type="checkbox" name="marketing" value = "1" {{#if marketing}}checked="checked"{{/if}} >
     <label for="marketing">Marketing</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="receptionist" data-bind="value: {{receptionist}}">
+    <input type="checkbox" name="receptionist" value = "1" {{#if receptionist}}checked="checked"{{/if}}>
     <label for="name">Receptionist</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="packaging" data-bind="value: {{packaging}}">
+    <input type="checkbox" name="packaging" value = "1" {{#if packaging}} checked="checked"{{/if}}>
     <label for="name">Packaging</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="exports" data-bind="value: true">
+    <input type="checkbox" name="exports" value = "1" {{#if exports}}checked="checked"{{/if}}>
     <label for="name">Exports</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="tourism" data-bind="value: true">
+    <input type="checkbox" name="tourism" value = "1" {{#if tourism}}checked="checked"{{/if}}>
     <label for="name">Tourism</label>
   </div><br>
   <div class="btn">
@@ -81,5 +83,3 @@
 </form>
 {{/data}}
 </div>
-
-

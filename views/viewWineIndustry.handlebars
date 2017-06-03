@@ -2,39 +2,77 @@
 <div  id="viewprofile">
 <div class="container">
 <h3 class="text-center">Display a learner Wine Industry option</h3>
-
+<script type="text/javascript">
+var checked= function(){
+  var isCheck = false;
+    if(fields === '1' || wine === '1' || cellar === '1' || marketing === '1' || receptionist === '1' || packaging === '1' || exports ==='1' || tourism === 1) {
+        isCheck = true;
+    }
+</script>
 {{#data}}
 <form id='form1' class="form-content" method="GET" action="/learner/display/{{Idnumber}}"> 
 	<div class="group">
-    <input type="checkbox"  name="fields" value="{{fields}}" readOnly/>
+    {{#if fields}} 
+    <input type="checkbox"  name="fields" value="{{fields}}" checked readOnly/>
+    {{else}}
+    <input type="checkbox"  name="fields" readOnly/>
+    {{/if}}
     <label for="fields">Field</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="wine" value="{{wine}}" readOnly/>
+    {{#if wine}}
+    <input type="checkbox" name="wine" value="{{wine}}" checked readOnly/>
+    {{else}}
+    <input type="checkbox" name="wine" readOnly/>
+    {{/if}}
     <label for="wine">Wine</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="cellar" value="{{cellar}}" readonly/>
+    {{#if cellar}}
+    <input type="checkbox" name="cellar" value="{{cellar}}" checked readonly/>
+    {{else}}
+    <input type="checkbox" name="cellar" readonly/>
+    {{/if}}
     <label for="cellar">Cellar</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="marketing" value="{{marketing}}" readonly/>
+    {{#if marketing}}
+    <input type="checkbox" name="marketing" value="{{marketing}}" checked readonly/>
+    {{else}}
+    <input type="checkbox" name="marketing" readonly/>
+    {{/if}}
     <label for="marketing">Sales And Marketing</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="receptionist" value="{{receptionist}}" readonly/>
+    {{#if receptionist}}
+    <input type="checkbox" name="receptionist" value="{{receptionist}}" checked readonly/>
+    {{else}}
+    <input type="checkbox" name="receptionist" readonly/>
+    {{/if}}
     <label for="receptionist">Receptionist</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="packaging" value="{{packaging}}" readonly/>
+    {{#if packaging}}
+    <input type="checkbox" name="packaging" value="{{packaging}}" checked readonly/>
+    {{else}}
+    <input type="checkbox" name="packaging" readonly/>
+    {{/if}}
     <label for="packaging">Packaging And Distribution</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="exports" value="{{exports}}" readonly/>
+    {{#if exports}}
+    <input type="checkbox" name="exports" value="{{exports}}" checked readonly/>
+    {{else}}
+    <input type="checkbox" name="exports" readonly/>
+    {{/if}}
     <label for="exports">exports</label>
   </div>
   <div class="group">
-    <input type="checkbox" name="tourism" value="{{tourism}}" readonly/>
+    {{#if tourism}}
+    <input type="checkbox" name="tourism" value="{{tourism}}" checked readonly/>
+    {{else}}
+    <input type="checkbox" name="tourism" readonly/>
+    {{/if}}
     <label for="tourism">Tourism And Restaurant</label>
   </div>
 	<input id="bt" action="action" type="submit" value="Exit" onclick="history.go(-1);"/>

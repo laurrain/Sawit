@@ -3,14 +3,11 @@
 <div class="container">
 <h3 class="text-center">Display a learner Fruit And vegetable Option</h3>
 <script type="text/javascript">
-var checked= function(DC){
-  var check; 
-  if(check === "0"){
-    return check;
-  }else{
-    return 
-  }
-}
+var checked= function(){
+  var isCheck = false;
+    if(fruit === '1' || dairy === '1' || vegetable === '1' || berry === '1' || deciduous === '1') {
+        isCheck = true;
+    }
 </script>
 {{#data}}
 <form id='form1' class="form-content" method="GET" action="/viewFruitVeg/{{Idnumber}}"> 
@@ -26,7 +23,7 @@ var checked= function(DC){
     {{#if dairy}} 
     <input type="checkbox" name="dairy" value="{{dairy}}" checked readOnly/>
     {{else}}
-    <input type="checkbox" name="dairy"readOnly/>
+    <input type="checkbox" name="dairy" readOnly/>
     {{/if}}
     <label for="dairy">Dairy</label>
   </div>

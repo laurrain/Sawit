@@ -160,9 +160,9 @@ exports.showAttendance = function (req, res, next) {
             if (err) return next(err);
             res.render( 'attendance', {
                 events: date,
-                learner : results
+                learner : results,
+                administrator : administrator
             });
-            console.log(date);
             });
       });
     });
@@ -175,7 +175,8 @@ exports.showAttendanceCaptureView = function (req, res, next) {
         connection.query('SELECT * from attended', [], function(err, results) {
             if (err) return next(err);
             res.render( 'attendanceCaptureView', {
-                learner : results
+                learner : results,
+                administrator : administrator
             });
             
       });
@@ -189,7 +190,8 @@ exports.showAttendanceRecord = function (req, res, next) {
         connection.query('SELECT * FROM attendanceRecord', [], function(err, results) {
             if (err) return next(err);
             res.render( 'attendanceRecord', {
-                learner : results
+                learner : results,
+                administrator : administrator
             });
             
       });
@@ -203,7 +205,8 @@ exports.showFeedbackQuestionaire = function (req, res, next) {
         connection.query('SELECT * FROM questionaire', [], function(err, results) {
             if (err) return next(err);
             res.render( 'feedbackQuestionaire', {
-                learner : results
+                learner : results,
+                administrator : administrator
             });
             
       });
@@ -217,7 +220,8 @@ exports.showLearnerProfile = function (req, res, next) {
         connection.query('SELECT * FROM profile', [], function(err, results) {
             if (err) return next(err);
             res.render( 'learnerProfile', {
-                learner : results
+                learner : results,
+                administrator : administrator
             });
             
       });
@@ -231,7 +235,8 @@ exports.showCurriculum = function (req, res, next) {
         connection.query('SELECT * FROM programCurriculum', [], function(err, results) {
             if (err) return next(err);
             res.render( 'programCurriculum', {
-                programCurriculum : results
+                programCurriculum : results,
+
             });
             
       });
@@ -309,7 +314,6 @@ exports.QuestionaireCapture = function (req, res, next) {
         if (err){ 
             return next(err);
         }
-        
         var input = JSON.parse(JSON.stringify(req.body));
         var data = {
                     Idnumber : input.Idnumber,
@@ -329,9 +333,9 @@ exports.QuestionaireCapture = function (req, res, next) {
                     Exports: input.exports,
                     Tourism : input.tourism
             };
-            
+ 
         connection.query('INSERT INTO questionaire set ?', [data], function(err, results) {
-            console.log(results);
+            console.log(data);
             if (err)
                 console.log("Error inserting : %s ", err );
          
@@ -339,6 +343,8 @@ exports.QuestionaireCapture = function (req, res, next) {
         });
     
     });
+
+
 };
 
 exports.addFacilitator = function (req, res, next) {
@@ -437,7 +443,6 @@ exports.addPlacement = function (req, res, next) {
                     Month : input.month,
                     Sign_attendance : input.sign_attendance
             };
-            
         connection.query('INSERT INTO placement set ?', [data], function(err, results) {
             if (err)
                 console.log("Error inserting : %s ", err );
@@ -747,6 +752,10 @@ exports.getViewWineIndustry = function(req, res, next){
 
 exports.getViewFruitVeg = function(req, res, next){
   var id = req.params.Idnumber;
+    var isCheck = false;
+    if(req.body.fruit === '0' || req.body.dairy === '0' || req.body.vegetable === '0' || req.body.berry === '0' || req.body.deciduous === '0') {
+        isCheck = true;
+    }
   req.getConnection(function(err, connection){
     connection.query('SELECT fruit, dairy, vegetable, berry, deciduous FROM questionaire where Idnumber = ?', [id], function(err,rows){
       if(err){

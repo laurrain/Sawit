@@ -1,6 +1,6 @@
 {
   "name": "sawitDB",
-  "repository": "nothing", 
+  "repository": "nothing",
   "version": "0.0.0",
   "description": "sawitDB web app",
   "main": "app.js",
@@ -10,19 +10,19 @@
   "author": "Laurrain",
   "license": "BSD-2-Clause",
   "dependencies": {
-    "express": "~4.12.3",
+    "bcrypt": ">= 0.8.5",
     "body-parser": "^1.9.2",
+    "cookie-parser": "~1.0.0",
+    "express": "~4.12.3",
     "express-handlebars": "^1.1.0",
     "express-myconnection": "^1.0.4",
-    "mysql": "^2.5.3",
-    "prompt": "^0.2.14",
-    "bcrypt": ">= 0.8.5",
-    "morgan": "~1.0.0",
-    "cookie-parser": "~1.0.0",
+    "express-session": "~1.11.2",
+    "express-validator": "^3.2.0",
+    "handlebars-form-helpers": "^0.1.3",
+    "hbs": "^4.0.1",
     "method-override": "~1.0.0",
-    "express-session": "~1.11.2"     
+    "morgan": "~1.0.0",
+    "mysql": "^2.5.3",
+    "prompt": "^0.2.14"
   }
-
-  }
-
-
+}

@@ -27,7 +27,8 @@ exports.showAdminPanel = function (req, res, next) {
             if (err) return next(err);
             console.log(results);
             res.render( 'admin_panel', {
-                users : results
+                users : results,
+                administrator : administrator
             });
             
       });
