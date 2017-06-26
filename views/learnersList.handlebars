@@ -1,4 +1,5 @@
 <table class="table" id="leanersList">
+    <thead>
     <tr>
         <th>ID Number</th>
         <th>Name</th>
@@ -12,7 +13,12 @@
         <th>Course</th>
         <th>Location</th>
         <th>Facilitator</th>
-    </tr>                          
+    </tr>  
+    <tr>
+        <th class=".col-md-1">Total F and M: </th>{{#data}}<th class=".col-md-1">{{sex}}</th>{{/data}} 
+    </tr>
+
+    </thead>                        
     {{#learner}} 
         <tr>
             <td>{{Idnumber}}</td><td>{{Name}}</td><td>{{surname}}</td><td>{{gender}}</td><td>{{race}}</td><td>{{Language}}</td><td>{{phone}}</td><td><a href="/learner/view/{{Idnumber}}">View</a></td><td>{{accountNo}}</td><td>{{course}}</td><td>{{location}}</td><td>{{facilitator}}</td><td><a href="/learner/edit/{{Idnumber}}">Edit</a></td><td><a href="/learner/delete/{{Idnumber}}">Delete</a></td>

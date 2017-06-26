@@ -5,34 +5,15 @@
   <!--button class="btn btn-primary" id="print">Print</button-->
 <!--a href="/"><h1 align="center">SAWIT Learner Details</h1></a--> 
         
-    <h3 class="text-center">Feedback on Learner Questionaire</h3> 
-    {{#if administrator}} 
-    <div  class="dropdown">
-    	<button type="button" class="dropbtn" >DropDown Search</button>
-        <div class="dropdown-content">
-          <a href="/Name">Search By Name</a>
-          <a href="/surname">Search By SurName</a>
-          <a href="/gender">Search By gender</a>
-          <a href="/race">Search By Race</a>
-          <a href="/Language">Search By Language</a>
-          <a href="/address">Search By Address</a>
-          <a href="/course">Search By Course</a>
-          <a href="/location">Search By Location</a>
-          <a href="/graduate">Search By Graduated</a>
-          <a href="/facilitator">Search By Facilitators</a>
-          <a href="/">Back to Main Menu</a>
-          <a href="/learner">Back to Learners List</a>
-          <a href="/lecturer">Back to Lecturers List</a>
-        </div>
-    </div>
-
-    <button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/'">Back To Main Menu</button>
+    <h3 class="text-center">Learner Preference Questionaire</h3> 
+   
+    <button type="button" class="dropbtn"  onclick="location.href='/'">Back To Main Menu</button>
     
 
   	</div> 
   
       <button type="button" class="btn" onclick="location.href='questionaireCapture'" class="col-xs-6" >
-          Capture Learner Questionaire
+          Capture Preference
       </button>
   		<thead>
       	<tr>
@@ -43,13 +24,11 @@
 				{{#learner}} 
         
 			<tr>
-  				<td>{{surname}}</td><td>{{Name}}</td><td><a href="/learner/viewFruitVeg/{{Idnumber}}">View</a></td><td><a href="/learner/viewWineIndustry/{{Idnumber}}">View</a></td>
+  				<td>{{surname}}</td><td>{{Name}}</td><td><a href="/learner/viewFruitVeg/{{Idnumber}}">View</a></td><td><a href="/learner/viewWineIndustry/{{Idnumber}}">View</a></td><td><a href="/learner/editQuestionaire/{{Idnumber}}">Edit</a></td><td><a href="/learner/deleteQuestionaire/{{Idnumber}}">Delete</a>
       </tr>
 				{{/learner}}
 	</tbody> 
 </table>
-{{else}}
-      <h1>SORRY, YOU HAVE TO BE ADMININISTRATOR!</h1>
-{{/if}}
+
 </div>
 

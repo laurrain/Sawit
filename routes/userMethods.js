@@ -108,7 +108,7 @@ exports.signup = function(req, res, next){
                     
                     req.session.user = input.username;
                     administrator = false;
-                    res.render('/', {administrator : administrator});
+                    res.render('home', {msg: "successfully signed up"});
                 }
                 else{
                     res.render("signup", {

@@ -1,0 +1,90 @@
+
+ <div id="head"> <a href="/"><h1>SAWIT Educate To Empower</h1></a> </div>
+<div  id="add">
+<h2 class="text-center">Capture Learner Questionaire</h2>
+ 
+<button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/feedbackQuestionaire'">Back To Learner Preference List</button>
+<script src="../js/questCapture.js"></script>
+
+ {{#data}}
+
+  <form id="formQuestAdd" id="questionaireCap" autocomplete="on" action="/learner/updateQuestionaire/{{Idnumber}}" method="Post">
+  <div class="group">
+    <input type="text" name="Idnumber" value = "{{Idnumber}}">
+    <label for="Idnumber">ID Number</label>
+  </div><br>
+  <div class="group">
+    <input type="text"  name="surname" value = "{{surname}}">
+    <label for="surname">Surname</label>
+  </div>
+  <div class="group">
+    <input type="text"  name="Name" value = "{{Name}}">
+    <label for="name">Name</label>
+  </div></br>
+
+<section>
+  <label>
+    <input type="checkbox" name = "fruit" value = "1" {{#if fruit}}checked="checked"{{/if}}>
+    Fruit
+  </label>
+  <label>
+    <input type="checkbox" name = "dairy" value = "1" {{#if dairy}}checked="checked"{{/if}}>
+    Dairy
+  </label>
+  <label>
+    <input type="checkbox" name = "vegetable" value = "1" {{#if vegetable}}checked="checked"{{/if}}>
+   Vegetable
+  </label>
+  <label>
+    <input type="checkbox"  name="berry" value = "1" {{#if berry}}checked="checked"{{/if}}>
+    Berry
+  </label>
+  <label>
+    <input type="checkbox"  name="deciduous" value = "1" {{#if deciduous}}checked="checked"{{/if}}>
+    Deciduous
+  </label>
+  <label>
+    <input type="checkbox"  name="fields" value = "1" {{#if fields}}checked="checked"{{/if}}>
+    Field
+  </label>
+  <label>
+    <input type="checkbox" name="wine" value = "1" {{#if wine}} checked="checked"{{/if}}>
+    Wine
+  </label>
+  <label>
+    <input type="checkbox" name="cellar" value = "1" {{#if cellar}}checked="checked"{{/if}}>
+    Cellar
+    </label>
+  <label>
+    <input type="checkbox" name="marketing" value = "1" {{#if marketing}}checked="checked"{{/if}} >
+    Marketing
+    </label>
+  <label>
+    <input type="checkbox" name="receptionist" value = "1" {{#if receptionist}}checked="checked"{{/if}}>
+    Receptionist
+    </label>
+  <label>
+    <input type="checkbox" name="packaging" value = "1" {{#if packaging}} checked="checked"{{/if}}>
+    Packaging
+    </label>
+  <label>
+    <input type="checkbox" name="exports" value = "1" {{#if exports}}checked="checked"{{/if}}>
+    Exports
+    </label>
+    <label>
+    <input type="checkbox" name="logistic" value = "1" {{#if logistic}}checked="checked"{{/if}}>
+    Logistic
+    </label>
+  <label>
+    <input type="checkbox" name="tourism" value = "1" {{#if tourism}}checked="checked"{{/if}}>
+    Tourism
+    </label>
+  
+  <div class="btn">
+    <input type="submit" value="Accept"><input action="action" type="submit" value="Cancel" onclick="history.go(-1);"/>
+  </div>
+  </section>
+  
+</form>
+{{/data}}
+</div>

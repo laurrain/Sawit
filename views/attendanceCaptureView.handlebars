@@ -1,9 +1,10 @@
 <div id="head"> <a href="/"><h1>SAWIT Educate To Empower</h1></a> </div>
-<div id="attend">
+<div id="attendCaptureView">
   <!--button class="btn btn-primary" id="print">Print</button-->
 <!--a href="/"><h1 align="center">SAWIT Learner Details</h1></a--> 
     <table class="table" id="attendedList">     
     <h2 class="text-center">Attendance Capture</h2>  
+    {{#if administrator}}
     <div  class="dropdown">
     	<button type="button" class="dropbtn" >DropDown Search</button>
         <div class="dropdown-content">
@@ -27,8 +28,10 @@
  
 
       <button id="attendView" type="button" class="btn" onclick="location.href='attendance'" class="col-xs-6" >
-          Capture attendance Registe
+          Capture Registe
       </button>
+
+      <button  class="dropbtn"  id="attendRecord" onclick="location.href='/attended/deleteAttendanceCaptureView'">Delete All(Please Print First)</button>
          
   		<thead>
 
@@ -44,4 +47,7 @@
 				{{/learner}}
 	 </tbody>
 </table>
+{{else}}
+      <h1>SORRY, YOU HAVE TO BE AN ADMINISTRATOR!</h1>
+{{/if}}
 </div>

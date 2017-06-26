@@ -10,72 +10,88 @@ var checked= function(){
     }
 </script>
 {{#data}}
-<form id='form1' class="form-content" method="GET" action="/learner/display/{{Idnumber}}"> 
-	<div class="group">
-    {{#if fields}} 
-    <input type="checkbox"  name="fields" value="{{fields}}" checked readOnly/>
+<form id='formInd' class="form-content" method="GET" action="/learner/display/{{Idnumber}}"> 
+  <section>
+  <label>
+    {{#if fields}}
+    field
+    <input type="checkbox" name = "fields" value = "((fields}}" checked readOnly>
     {{else}}
-    <input type="checkbox"  name="fields" readOnly/>
+    <input type="checkbox" name = "fields" readOnly>
     {{/if}}
-    <label for="fields">Field</label>
-  </div>
-  <div class="group">
+  </label>
+  <label>
     {{#if wine}}
-    <input type="checkbox" name="wine" value="{{wine}}" checked readOnly/>
+    Wine
+    <input type="checkbox" name = "wine" value = "{{wine}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="wine" readOnly/>
+    <input type="checkbox" name = "wine" readOnly>
     {{/if}}
-    <label for="wine">Wine</label>
-  </div>
-  <div class="group">
+  </label>
+  <label>
     {{#if cellar}}
-    <input type="checkbox" name="cellar" value="{{cellar}}" checked readonly/>
+    Cellar
+    <input type="checkbox" name = "cellar" value = "{{cellar}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="cellar" readonly/>
+    <input type="checkbox" name = "cellar" readOnly>
     {{/if}}
-    <label for="cellar">Cellar</label>
-  </div>
-  <div class="group">
+  </label>
+  <label>
     {{#if marketing}}
-    <input type="checkbox" name="marketing" value="{{marketing}}" checked readonly/>
+    Marketing
+    <input type="checkbox"  name="vy" value = "{{marketing}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="marketing" readonly/>
+    <input type="checkbox" name = "marketing" readOnly>
     {{/if}}
-    <label for="marketing">Sales And Marketing</label>
-  </div>
-  <div class="group">
+  </label>
+  <label>
     {{#if receptionist}}
-    <input type="checkbox" name="receptionist" value="{{receptionist}}" checked readonly/>
+    Receptionist
+    <input type="checkbox"  name="receptionist" value = "{{receptionist}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="receptionist" readonly/>
+    <input type="checkbox" name = "receptionist" readOnly>
     {{/if}}
-    <label for="receptionist">Receptionist</label>
-  </div>
-  <div class="group">
+  </label>
+  <label>
     {{#if packaging}}
-    <input type="checkbox" name="packaging" value="{{packaging}}" checked readonly/>
+    Packaging
+    <input type="checkbox"  name="packaging" value = "{{packaging}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="packaging" readonly/>
+    <input type="checkbox" name = "packaging" readOnly>
     {{/if}}
-    <label for="packaging">Packaging And Distribution</label>
-  </div>
-  <div class="group">
+  </label>
+  <label>
     {{#if exports}}
-    <input type="checkbox" name="exports" value="{{exports}}" checked readonly/>
+    Export
+    <input type="checkbox"  name="exports" value = "{{exports}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="exports" readonly/>
+    <input type="checkbox" name = "exports" readOnly>
     {{/if}}
-    <label for="exports">exports</label>
-  </div>
-  <div class="group">
+  </label>
+
+  <label>
+    {{#if logistic}}
+    Logistic
+    <input type="checkbox"  name="logistic" value = "{{logistic}}" checked readOnly>
+    {{else}}
+    <input type="checkbox" name = "logistic" readOnly>
+    {{/if}}
+  </label>
+
+  <label>
     {{#if tourism}}
-    <input type="checkbox" name="tourism" value="{{tourism}}" checked readonly/>
+    Tourism
+    <input type="checkbox"  name="tourism" value = "{{tourism}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="tourism" readonly/>
+    <input type="checkbox" name = "tourisms" readOnly>
     {{/if}}
-    <label for="tourism">Tourism And Restaurant</label>
-  </div>
-	<input id="bt" action="action" type="submit" value="Exit" onclick="history.go(-1);"/>
+  </label>
+
+<div>
+  <input id="bt" action="action" type="submit" value="Exit" onclick="history.go(-1);"/>
+</div>
+</section>
+	
 </form>
 {{/data}}
 </div>

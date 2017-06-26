@@ -1,7 +1,7 @@
 <div id="head"> <a href="/"><h1>SAWIT Educate To Empower</h1></a> </div>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<div id="attend">
-<table class="table" id="locationList"> 
+<div class="attend" id="table">
+<table class="table" id="locationList" id="table"> 
   <!--button class="btn btn-primary" id="print">Print</button-->
 <!--a href="/"><h1 align="center">SAWIT Learner Details</h1></a--> 
         
@@ -27,18 +27,18 @@
     </div>
 
     <button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/'">Back To Main Menu</button>
-    
-
   	</div> 
     
+    <export  type="button" class="btn">Export</export>
+
   		<form>
-    		<input class ="searchBar" id ="locatesSearchBar" autocomplete="off" type ="text" name="attendance" value="{{location}}"></input>
+    		<input class ="searchBar" id ="locatesSearchBar" placeholder="Course Location Name" autocomplete="on" type ="text" name="attendance" value="{{location}}"></input>
    		</form> 
 
    		<span class="btn btn-info btn-lg" class="glyphicon glyphicon-search">Search</span> 
       
       <button type="button" class="btn" onclick="location.href='attendanceCaptureView'" class="col-xs-6" >
-        Attended learner List
+        Attended List
       </button>
       <button type="button" class="btn" onclick="location.href='date_add'" class="col-xs-6" >
         Set Date
@@ -55,8 +55,8 @@
         <tr>
             <th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2">Date:</th>
             
-            {{#events}}
-             <th class=".col-md-1">{{date}}</th><th><a href="/attendance/deleteDate/{{id}}">Delete</a></th>
+             {{#events}}
+             <th class=".col-md-1">{{date}}</th><th><a href="/attendance/deleteDate/{{date}}">Delete</a></th>
              {{/events}}
 
         </tr>
@@ -72,6 +72,6 @@
 	</tbody> 
 </table>
 {{else}}
-      <h1>SORRY, YOU HAVE TO BE ADMININISTRATOR!</h1>
+      <h1>SORRY, YOU HAVE TO BE ADMINISTRATOR!</h1>
 {{/if}}
 </div>

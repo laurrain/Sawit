@@ -1,5 +1,5 @@
 <div id="head"> <a href="/"><h1>SAWIT Educate To Empower</h1></a> </div>
-<div id="placement"> 
+<div class="placement" id="table"> 
     <table class="table" id="work_locationList">     
     <h2 class="text-center">Learners Placement</h2>  
     <div  class="dropdown">
@@ -10,11 +10,12 @@
     </div>
 
     <button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/'">Back To Main Menu</button>
-    <!--button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/excel'">Export</button-->
-
   	</div> 
+
+    <export  type="button" class="btn">Export</export>
+
   		<form>
-    		<input class ="searchBar" id ="work_locationsSearchBar" autocomplete="off" type ="text" name="work_location"></input>
+    		<input class ="searchBar" id ="work_locationsSearchBar" placeholder="Location" type ="text" name="work_location"></input>
    		</form> 
 
    		<!--span class="btn btn-info btn-lg" class="glyphicon glyphicon-search">Search</span--> 
@@ -23,14 +24,14 @@
   		<thead>
 
       	<tr>
-      		<th class=".col-md-1">ID Number</th><th class=".col-md-1">Name</th><th class=".col-md-1">Surname</th><th class=".col-md-1">Work Location</th><th class=".col-md-1">Remuneration Amount</th><th class=".col-md-1">Activities</th><th class=".col-md-1">Month</th><th class=".col-md-1">Confirm Attendance</th>
+      		<th class=".col-md-1">ID Number</th><th class=".col-md-1">Name</th><th class=".col-md-1">Surname</th><th class=".col-md-1">Work Location</th><th class=".col-md-1">Remuneration Amount</th><th class=".col-md-1">Activities</th><th class=".col-md-1">Month</th><th class=".col-md-1">Mentor Name</th><th class=".col-md-1">Confirm Attendance</th>
     		</tr>
 
   		</thead>
 		<tBody>
 				{{#placement}} 
 			<tr>
-  				<td>{{Idnumber}}</td><td>{{Name}}</td><td>{{surname}}</td><td>{{work_location}}</td><td>{{remuneration_amount}}</td><td>{{activities}}</td><td>{{month}}</td><td>{{sign_attendance}}</td><td><a href="/placement/editPlacement/{{Idnumber}}">Edit</a></td><td><a href="/placement/deletePlacement/{{Idnumber}}">Delete</a></td>
+  				<td>{{Idnumber}}</td><td>{{Name}}</td><td>{{surname}}</td><td>{{work_location}}</td><td>{{remuneration_amount}}</td><td>{{activities}}</td><td>{{month}}</td><td>{{mentor_name}}</td><td>{{sign_attendance}}</td><td><a href="/placement/editPlacement/{{Idnumber}}">Edit</a></td><td><a href="/placement/deletePlacement/{{Idnumber}}">Delete</a></td>
 			</tr>
 				{{/placement}}
 	</tbody>

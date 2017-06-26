@@ -1,9 +1,9 @@
 <div id="head"> <a href="/"><h1>SAWIT Educate To Empower</h1></a> </div>
 <div  id="add">
 <h2 class="text-center">Add a Module</h2>
-<button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/programCurriculum'">Back To Learner List</button>
+<button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/programCurriculum'">Back To Program Curriculum</button>
  {{#data}}
- <form id="formAdd" autocomplete="on" action="/programCurriculum_add" method="Post">
+ <form id="formProgramCurrAdd" autocomplete="on" action="/programCurriculum_add" method="Post">
   <div class="group">
     <input type="text" placeholder="Module Name" name="module_name"  data-bind="value: {{module_name}}">
     <label for="module_name">Module Name</label>
@@ -29,7 +29,7 @@
     <label for="group_work">Group Work</label>
   </div>
   <div class="group">
-    <input type="text" placeholder="dd/mm/yyyyc" name="Month" data-bind="value: {{month}}">
+    <input type="Date" placeholder="yyyy/mm/dd" name="Month" data-bind="value: {{month}}">
     <label for="month">Month</label>
   </div>
 

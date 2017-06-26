@@ -2,8 +2,9 @@
 <div  id="add">
 <h2 class="text-center">Add Learner Exit Progress</h2>
 <button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/exitPlan'">Back To Learner Exit Plan List</button>
+{{#if administrator}}
  {{#data}}
- <form id="formAdd" autocomplete="on" action="/exitPlan_add" method="Post">
+ <form id="formExitPlanAdd" autocomplete="on" action="/exitPlan_add" method="Post">
   <div class="group">
     <input type="text" placeholder="ID Number" name="IDno"  value="{{IDno}}">
     <label for="IDno">ID Number</label>
@@ -44,6 +45,9 @@
 
 </form>
 {{/data}}
+{{else}}
+  <h1>SORRY, YOU HAVE TO BE ADMINISTRATOR!</h1>
+{{/if}}
 </div>
 
 

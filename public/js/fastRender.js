@@ -6,8 +6,8 @@ $(document).ready(function(){
 			}
 
 			$.get("/Name/search/" + searchValue, function(results){
-				$("#learnerList" ).html(results);
-				//async: true;
+				$("#learnerList").html(results);
+				async: true;
 			});
 		});
 
@@ -196,7 +196,6 @@ $(document).ready(function(){
 
 });
 
-
 $(document).ready(function(){
 		$("#work_locationsSearchBar").keyup(function(){
 			var searchValue = $("#work_locationsSearchBar").val();
@@ -206,6 +205,22 @@ $(document).ready(function(){
 
 			$.get("/work_location/search/" + searchValue, function(results){
 				$("#work_locationList" ).html(results);
+				//async: true
+			});
+		});
+
+});
+
+
+$(document).ready(function(){
+		$("#lecturersSearchBar").keyup(function(){
+			var searchValue = $("#lecturersSearchBar").val();
+			if(searchValue == ""){
+				searchValue = "all";
+			}
+
+			$.get("/lecturer/search/" + searchValue, function(results){
+				$("#lecturerList" ).html(results);
 				//async: true
 			});
 		});

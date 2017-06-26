@@ -10,48 +10,53 @@ var checked= function(){
     }
 </script>
 {{#data}}
-<form id='form1' class="form-content" method="GET" action="/viewFruitVeg/{{Idnumber}}"> 
-	<div class="group">
-    {{#if fruit}} 
-    <input type="checkbox" name="fruit" value="{{fruit}}" checked readOnly/>
+<form id='formFruit' class="form-content" method="GET" action="/viewFruitVeg/{{Idnumber}}"> 
+  <section>
+  <label>
+    {{#if fruit}}
+    Fruit
+    <input type="checkbox" name = "fruit" value = "((fruit}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="fruit" readOnly/>
+    <input type="checkbox" name = "fruit" readOnly>
     {{/if}}
-    <label for="fruit">Fruit</label>
-  </div>
-  <div class="group">
-    {{#if dairy}} 
-    <input type="checkbox" name="dairy" value="{{dairy}}" checked readOnly/>
+  </label>
+  <label>
+    {{#if dairy}}
+    Dairy
+    <input type="checkbox" name = "dairy" value = "{{dairy}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="dairy" readOnly/>
+    <input type="checkbox" name = "dairy" readOnly>
     {{/if}}
-    <label for="dairy">Dairy</label>
-  </div>
-  <div class="group">
+  </label>
+  <label>
     {{#if vegetable}}
-    <input type="checkbox"  name="vegetable" value="{{vegetable}}" checked readonly/>
+    Vegetable
+    <input type="checkbox" name = "vegetable" value = "{{vegetable}}" checked readOnly>
     {{else}}
-    <input type="checkbox"  name="vegetable" readonly/>
+    <input type="checkbox" name = "vegetable" readOnly>
     {{/if}}
-    <label for="vegetable">Vegetable</label>
-  </div>
-  <div class="group">
+  </label>
+  <label>
     {{#if berry}}
-    <input type="checkbox" name="berry" value="{{berry}}" checked readonly/>
+    Berry
+    <input type="checkbox"  name="berry" value = "{{berry}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="berry" readonly/>
+    <input type="checkbox" name = "berry" readOnly>
     {{/if}}
-    <label for="berry">Berry</label>
-  </div>
-  <div class="group">
+  </label>
+  <label>
     {{#if deciduous}}
-    <input type="checkbox" name="deciduous" value="{{deciduous}}" checked readonly/>
+    Deciduous
+    <input type="checkbox"  name="deciduous" value = "{{deciduous}}" checked readOnly>
     {{else}}
-    <input type="checkbox" name="deciduous" readonly/>
+    <input type="checkbox" name = "deciduous" readOnly>
     {{/if}}
-    <label for="deciduous">Deciduous Fruit</label>
-  </div>
+  </label>
+
+<div>
 	<input id="bt" action="action" type="submit" value="Exit" onclick="history.go(-1);"/>
+</div>
+</section>
 </form>
 {{/data}}
 </div>

@@ -1,0 +1,14 @@
+<table class="table" id="lecturersList">
+    <tr>
+      	<th class=".col-md-1">ID Number</th><th class=".col-md-1">Name</th><th class=".col-md-1">Surname</th><th class=".col-md-1">Phone</th><th class=".col-md-1">E-mail</th><th class=".col-md-1">Course</th><th class=".col-md-1">Course Location</th>
+    </tr>                        
+    
+      
+        
+      {{#facilitator}} 
+		<tr>
+  		   <td>{{idNo}}</td><td>{{Name}}</td><td>{{surname}}</td><td>{{phone}}</td><td>{{email}}</td><td>{{course}}</td><td>{{location}}</td><td><a href="/lecturer/editLecturer/{{idNo}}">Edit</a></td><td><a href="/lecturer/deleteFacilitator/{{idNo}}">Delete</a></td>
+		</tr>
+	 {{/facilitator}}
+    
+</table>

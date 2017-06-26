@@ -45,7 +45,7 @@ app.use(session({
   secret: 'lau lo',
   resave: true,
   saveUninitialized: false,
-  cookie : {maxAge : 5*60000}
+  cookie : {maxAge : 9*60000}
 }))
 
 app.get("/", userMethods.checkUser, function(req, res){  
@@ -81,6 +81,10 @@ app.get('/learner_add', userMethods.checkUser, function(req,res){
 })
 app.post('/learner_add', learnersMethods.add);
 
+app.get('/attendance/deleteDate/:date',learnersMethods.deleteDate)
+
+app.get('/attended/deleteAttendanceCaptureView',learnersMethods.deleteAttendanceCaptureView)
+
 app.get('/questionaireCapture',userMethods.checkUser, function(req,res){
   res.render("questionaireCapture", {data:learnersMethods})
 })
@@ -92,7 +96,7 @@ app.get('/facilitator_add', userMethods.checkUser, function(req,res){
 app.post('/facilitator_add', userMethods.checkUser, learnersMethods.addFacilitator);
 
 app.get('/exitPlan_add', userMethods.checkUser,function(req,res){
-  res.render("exitPlan_add", {data:learnersMethods})
+  res.render("exitPlan_add", {data:learnersMethods, administrator : administrator})
 })
 app.post('/exitPlan_add', userMethods.checkUser, learnersMethods.addExitPlan);
 
@@ -120,6 +124,7 @@ app.post('/programCurriculum_add', userMethods.checkUser, learnersMethods.addPro
 
 
 app.get('/learner', userMethods.checkUser, learnersMethods.showLearner);
+app.get('/Name', userMethods.checkUser, learnersMethods.showName);
 app.get('/surname', userMethods.checkUser, learnersMethods.showSurname);
 app.get('/course', userMethods.checkUser,learnersMethods.showCourse);
 app.get('/location', userMethods.checkUser, learnersMethods.showLocation);
@@ -147,8 +152,11 @@ app.get('/attendanceCaptureView/delete/:Idnumber',learnersMethods.deleteAttendan
 app.get('/learner/edit/:Idnumber', learnersMethods.getUpdate);
 app.post('/learner/update/:Idnumber', learnersMethods.update);
 app.get('/learner/delete/:Idnumber',learnersMethods.delete);
-//app.get('/attendance/deleteDate/:id',learnersMethods.deleteDate);
+app.get('/learner/deleteProfile/:Idnumber',learnersMethods.deleteProfile);
 
+app.get('/learner/editQuestionaire/:Idnumber', learnersMethods.getUpdateQuestionaire);
+app.post('/learner/updateQuestionaire/:Idnumber', learnersMethods.updateQuestionaire);
+app.get('/learner/deleteQuestionaire/:Idnumber',learnersMethods.deleteQuestionaire);
 
 app.get('/lecturer/editLecturer/:idNo', learnersMethods.getUpdateFacilitator);
 app.post('/lecturer/updateFacilitator/:idNo', learnersMethods.updateFacilitator);
@@ -166,7 +174,6 @@ app.get('/exitPlan/editExitPlan/:IDno', learnersMethods.getUpdateExitPlan);
 app.post('/exitPlan/updateExitPlan/:IDno', learnersMethods.updateExitPlan);
 app.get('/exitPlan/deleteExitPlan/:IDno',learnersMethods.deleteExitPlan);
 
-
 app.get('/learner/view/:Idnumber', learnersMethods.getView);
 app.get('/learner/viewAccountNo/:Idnumber', learnersMethods.getViewAccountNo);
 app.get('/learner/viewFacilitator/:Idnumber', learnersMethods.getViewFacilitator);
@@ -177,15 +184,15 @@ app.get('/learner/viewWineIndustry/:Idnumber', learnersMethods.getViewWineIndust
 app.get('/learner/viewFruitVeg/:Idnumber', learnersMethods.getViewFruitVeg);
 
 
-app.get('/Name', learnersMethods.sortName);
-app.get('/surname', learnersMethods.SortSurname);
-app.get('/gender', learnersMethods.SortGender);
-app.get('/course', learnersMethods.SortCourse);
-app.get('/race', learnersMethods.SortRace);
-app.get('/Language', learnersMethods.SortLanguage);
+app.get('/Name', userMethods.checkUser, learnersMethods.SortName);
+app.get('/surname', userMethods.checkUser, learnersMethods.SortSurname);
+app.get('/gender', userMethods.checkUser, learnersMethods.SortGender);
+app.get('/course', userMethods.checkUser, learnersMethods.SortCourse);
+app.get('/race', userMethods.checkUser, learnersMethods.SortRace);
+app.get('/Language', userMethods.checkUser, learnersMethods.SortLanguage);
 app.get('/address', learnersMethods.SortAddress);
-app.get('/facilitator', learnersMethods.SortFacilitator);
-app.get('/location', learnersMethods.SortLocation);
+app.get('/facilitator',userMethods.checkUser,  learnersMethods.SortFacilitator);
+app.get('/location', userMethods.checkUser, learnersMethods.SortLocation);
 
 
 app.get('/learner/learnersList/:Name', learnersMethods.getSearchNames);
@@ -226,6 +233,9 @@ app.get('/accountNo/search/:searchValue', learnersMethods.getSearchAttended);
 
 app.get('/profile/profilesList/:Name', learnersMethods.getSearchProfile);
 app.get('/interest/search/:searchValue', learnersMethods.getSearchProfile);
+
+app.get('/facilitator/lecturersList/:location', learnersMethods.getSearchLecturer);
+app.get('/lecturer/search/:searchValue', learnersMethods.getSearchLecturer);
 
 app.get('/placement/work_locationsList/:work_location', learnersMethods.getSearchWork_location);
 app.get('/work_location/search/:searchValue', learnersMethods.getSearchWork_location);
