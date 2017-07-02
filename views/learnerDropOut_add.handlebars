@@ -1,0 +1,43 @@
+<div id="head"> <a href="/"><h1>SAWIT Educate To Empower</h1></a> </div>
+<div  id="addFacilit">
+<h2 class="text-center">Add Drop OUT Learner</h2>
+<button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/lecturer'">Back To Learner Drop Out List</button>
+
+ {{#data}}
+ <form id="formAddFacilit" autocomplete="on" action="/learnerDropOut_add" method="Post">
+  <div class="group">
+    <input type="text" placeholder="Id Number" name="Idnumber"  data-bind="value: {{Idnumber}}">
+    <label for="Idnumber">ID Number</label>
+  </div>
+  <div class="group">
+    <input type="text" placeholder="Name" name="Name" data-bind="value: {{Name}}">
+    <label for="name">Name</label>
+  </div>
+  <div class="group">
+    <input type="text" placeholder="Surname" name="surname" data-bind="value: {{surname}}">
+    <label for="surname">Surname</label>
+  </div>
+  <div class="group">
+    <input type="text" placeholder="Location Venue" name="locationVenue" data-bind="value: {{locationVenue}}">
+    <label for="locationVenue">Location</label>
+  </div>
+
+  <div class="group">
+    <input type="date" placeholder="date" name="date" data-bind="value: {{date}}">
+    <label for="date">Date</label>
+  </div>
+
+  <div class="group">
+    <input type="textarea" placeholder="Reason Of Dropping Out" name="reason" data-bind="value: {{reason}}">
+    <label for="reason">Reason</label>
+  </div>
+  <div class="btn">
+    <input type="submit" value="Accept"><input action="action" type="submit" value="Cancel" onclick="history.go(-1);"/>
+    
+  </div>
+
+</form>
+{{/data}}
+</div>
+
+

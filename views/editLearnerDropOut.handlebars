@@ -1,0 +1,39 @@
+<div id="head"> <a href="/"><h1>SAWIT Educate To Empower</h1></a> </div>
+<div  id="edit">
+<h2 class="text-center">Update Learner Drop Out</h2>
+<button type="button" class="dropbtn" id="mainmenu" onclick="location.href='/placement'">Back To Placement List</button>
+
+{{#data}}
+<form id="formAdd" autocomplete="on" action="/learnerDropOut/updateLearnerDropOut/{{Idnumber}}" method="Post">
+  <div class="group">
+  <input type="text" name="Idnumber" value="{{Idnumber}}">
+    <label for="Idnumber">ID Number</label>
+  </div>
+  <div class="group">
+    <input type="text" name="Name" value="{{Name}}">
+    <label for="name">Name</label>
+  </div>
+  <div class="group">
+    <input type="text" name="surname" value="{{surname}}">
+    <label for="surname">Surname</label>
+  </div>
+  <div class="group">
+    <input type="text" name="locationVenue" value="{{locationVenue}}">
+    <label for="location">Location</label>
+  </div>
+  <div class="group">
+    <input type="date" name="date" value="{{date}}">
+    <label for="date">DropOut Date</label>
+  </div>
+  <div class="group">
+    <input type="textarea" name="reason" value="{{reason}}">
+    <label for="reason">Reason</label>
+  </div>
+  <div class="btn">
+    <input type="submit" value="Submit"><input action="action" type="submit" value="Cancel" onclick="history.go(-1);"/>
+    
+  </div>
+
+</form>
+{{/data}}
+</div>

@@ -35,17 +35,28 @@
       <button type="button" class="btn" onclick="location.href='learner_add'" class="col-xs-6" >
           Add A Learner
       </button> 
-         
+      <tbody>
+          <tr>
+            <td class=".col-md-1">Total Female</td><td class=".col-md-1">Total Male</td><td></td><td class=".col-md-1">Total African</td><td class=".col-md-1">Total Coloured</td><td class=".col-md-1">Total White</td><td class=".col-md-1">Total Indian</td>
+          </tr>
+        <tr>
+              {{#data}}<td class=".col-md-1">{{sex}}</td>{{/data}}<td>
+              {{#result}}</td><td class=".col-md-1">{{race}}</td>{{/result}}</th>
+         </tr>
+              
   		<thead>
-
+      <thead>
       	<tr>
       		<th class=".col-md-1">ID Number</th><th class=".col-md-1">Name</th><th class=".col-md-1">Surname</th><th class=".col-md-1">Gender</th><th class=".col-md-1">Race</th><th class=".col-md-1">Language</th><th class=".col-md-1">Phone</th><th class=".col-md-1">Address</th><th class=".col-md-1">AccountNo</th><th class=".col-md-1">Course</th><th class=".col-md-1">Course Info</th><th class=".col-md-1">Personal Info</th>
     		</tr>
-
-        <tr>
-          <th class=".col-md-1">Total F and M: </th>{{#data}}<th class=".col-md-1">{{sex}}</th>{{/data}} 
+         
+          {{#answer}}
+         <tr>
+            <th class=".col-md-1">Total Numb Of Learners: </th><th class=".col-md-1">{{learners}}
         </tr>
-
+          {{/answer}}
+          
+          
   		</thead>
 		<tBody >
 				{{#learner}} 

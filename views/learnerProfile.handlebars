@@ -35,9 +35,28 @@
 
    		<span class="btn btn-info btn-lg" class="glyphicon glyphicon-search">Search</span> 
         
+      <tbody>
+          <tr>
+            <td class=".col-md-1">Cellar</td><td class=".col-md-1">Dairy</td><td class=".col-md-1">Deciduous</td><td class=".col-md-1">Export</td><td class=".col-md-1">Field</td><td class=".col-md-1">Fruit</td>
+             {{#data}}
+        <tr>
+              <td class=".col-md-1">{{cellar}}</td><td class=".col-md-1">{{dairy}}</td><td class=".col-md-1">{{deciduous}}</td><td class=".col-md-1">{{exports}}</td><td class=".col-md-1">{{fields}}</td><td class=".col-md-1">{{fruit}}</td>
+        </tr>
+        {{/data}}
+          </tr>
+          <tr>
+            <td class=".col-md-1">Logistic</td><td class=".col-md-1">Marketing</td><td class=".col-md-1">Packeging</td><td class=".col-md-1">Tourism</td><td class=".col-md-1">Vegetable</td><td class=".col-md-1">Wine</td>
+          </tr>
+         {{#data}}
+        <tr>
+              <td class=".col-md-1">{{logistic}}</td><td class=".col-md-1">{{marketing}}</td><td class=".col-md-1">{{packaging}}</td><td class=".col-md-1">{{tourism}}</td><td class=".col-md-1">{{vegetable}}</td><td class=".col-md-1">{{wine}}</td>   
+         </tr>
+          {{/data}}   
+      <thead>
+
   		<thead>
       	<tr>
-      			<th class=".col-md-2">Surname</th><th class=".col-md-2">Name</th><th class=".col-md-2">Learner Interest</th><th class=".col-md-2">Education Level</th><th class=".col-md-2">Dependancy</th>
+      			<th class=".col-md-4">Surname</th><th class=".col-md-4">Name</th><th class=".col-md-4">Learner Interest</th><th class=".col-md-4">Education Level</th><th class=".col-md-4">Dependancy</th>
     		</tr>
   		</thead>
 		<tBody>

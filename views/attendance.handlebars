@@ -43,6 +43,9 @@
       <button type="button" class="btn" onclick="location.href='date_add'" class="col-xs-6" >
         Set Date
       </button>
+      <!--button type="button" class="btn" onclick="location.href='week_add'" class="col-xs-6" >
+        Set Weeks count
+      </button-->
          
   		<thead>
        
@@ -53,10 +56,10 @@
       			<th class=".col-md-2">Surname</th><th class=".col-md-2">Name</th><th class=".col-md-2">ID Number</th><th class=".col-md-2">Contact</th><th class=".col-md-2">Signature Morning</th><th class=".col-md-2">Signature Afternoon</th>
     		</tr>
         <tr>
-            <th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2">Date:</th>
+            <th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2"></th><th class=".col-md-2">Date:</th>
             
              {{#events}}
-             <th class=".col-md-1">{{date}}</th><th><a href="/attendance/deleteDate/{{date}}">Delete</a></th>
+             <th class=".col-md-1">{{date}}</th><th><a href="/deleteDate">Delete</a></th>
              {{/events}}
 
         </tr>
@@ -65,7 +68,7 @@
 				{{#learner}} 
         
 			<tr>
-  				<td>{{surname}}</td><td>{{Name}}</td><td>{{Idnumber}}</td><td>{{phone}}</td><td></td><td></td>
+  				<td>{{surname}}</td><td>{{Name}}</td><td>{{Idnumber}}</td><td>{{phone}}</td><td></td></td><td></td><td><td></td>
 			    <td></td><td><a href="/learner/signed/{{Idnumber}}">Signed</a></td>
       </tr>
 				{{/learner}}

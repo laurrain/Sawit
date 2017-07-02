@@ -226,3 +226,48 @@ $(document).ready(function(){
 		});
 
 });
+
+$(document).ready(function(){
+		$("#curriculumSearchBar").keyup(function(){
+			var searchValue = $("#curriculumSearchBar").val();
+			if(searchValue == ""){
+				searchValue = "all";
+			}
+
+			$.get("/facilitators/search/" + searchValue, function(results){
+				$("#curriculumList" ).html(results);
+				//async: true
+			});
+		});
+
+});
+
+$(document).ready(function(){
+		$("#locationVenueSearchBar").keyup(function(){
+			var searchValue = $("#locationVenueSearchBar").val();
+			if(searchValue == ""){
+				searchValue = "all";
+			}
+
+			$.get("/locationVenue/search/" + searchValue, function(results){
+				$("#locationVenueList" ).html(results);
+				//async: true
+			});
+		});
+
+});
+
+$(document).ready(function(){
+		$("#attendanceRecordSearchBar").keyup(function(){
+			var searchValue = $("#attendanceRecordSearchBar").val();
+			if(searchValue == ""){
+				searchValue = "all";
+			}
+
+			$.get("/trainingVenue/search/" + searchValue, function(results){
+				$("#trainingLocationList" ).html(results);
+				//async: true
+			});
+		});
+
+});

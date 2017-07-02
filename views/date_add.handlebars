@@ -5,11 +5,16 @@
 
 {{#data}}
 <form class="form-content" method="POST" action="attendance"> 
-	Date: <input type="DATE" name="date" value="{{date}}" >
-	
-	<input id="bt" action="action" type="submit"/><input action="action" type="submit" value="Cancel" onclick="history.go(-1);"/>
+	<div class="group">
+	<input type="date" name="date" value="{{date}}" >
+	<label for="date">Date: </label>
+    </div>
+	<div class="btnn">
+	<input action="action" type="submit"/><input action="action" type="submit" value="Cancel" onclick="history.go(-1);"/>
+    </div>
 </form>
 {{/data}}
-</div>
+
+
 
 

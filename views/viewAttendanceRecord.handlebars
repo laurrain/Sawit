@@ -2,13 +2,11 @@
 <div id="viewRecord">
 <div class="container">
 <h3 class="text-center">Display a learner date attendance</h3>
-
-
 {{#data}}
 <form class="form-content" method="GET" action="/learner/viewAttendanceRecord/{{Idnumber}}"> 
   <div class="group">
-    <input type="text"  name="date" value="{{date}}" readOnly/>
-    <label for="date">Weeks</label>
+    <input type="int"  name="week" value="{{week}}" readOnly/>
+    <label for="week">Weeks</label>
   </div>
 	<input id="bt" action="action" type="submit" value="Exit" onclick="history.go(-1);"/>
 </form>

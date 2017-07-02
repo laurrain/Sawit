@@ -3,25 +3,63 @@ administrator = false,
 last_page = "",
 counter = 0;
 
-
-
 exports.showLearner = function (req, res, next) {
 	req.getConnection(function(err, connection){
 		if (err) 
 			return next(err);
         connection.query('SELECT gender, COUNT(*) AS sex FROM learner GROUP BY gender',[], function(err, gender) {
-            console.log(gender);
+           if (err) return next(err); 
+           connection.query('SELECT race, COUNT(*) AS race FROM learner GROUP BY race',[], function(err, race) {
+           if (err) return next(err);
+           connection.query('SELECT Idnumber, COUNT(*) AS learners FROM learner',[], function(err, learners) {
            if (err) return next(err); 
 		connection.query('SELECT Idnumber, Name, surname, gender, race, Language, phone, address, accountNo, branch, course, location, course_date, graduate, facilitator from learner', [], function(err, results) {
         	if (err) return next(err); 
     		res.render( 'learner', {
-    			data: gender,
+    			data : gender,
+                result : race,
+                answer : learners,
                 learner : results,
                 administrator : administrator
-    		});
+    		   });
+              });
+            });
     	});
       });
 	});
+};
+
+exports.showLearnerProfile = function (req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err) 
+            return next(err);
+        connection.query('SELECT COUNT(fruit) AS fruit, COUNT(Dairy) AS dairy, COUNT(Vegetable) AS vegetable, COUNT(deciduous) AS deciduous, COUNT(wine) AS wine,COUNT(fields) AS fields, COUNT(cellar) AS cellar,COUNT(marketing) AS marketing,COUNT(packaging) AS packaging,COUNT(exports) AS exports,COUNT(logistic) AS logistic,COUNT(tourism) AS tourism FROM questionaire', [], function(err, interest) {
+            console.log(interest);
+            if (err) return next(err);
+        connection.query('SELECT * FROM profile', [], function(err, results) {
+            if (err) return next(err);
+            res.render( 'learnerProfile', {
+                data : interest,
+                learner : results,
+                administrator : administrator
+            });
+            });
+      });
+    });
+};
+
+exports.showLearnerDropOut = function (req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err) 
+            return next(err);
+        connection.query('SELECT *, DATE_FORMAT(date, GET_FORMAT(DATE,"EUR")) AS date FROM learnerDropOut', [], function(err, results) {
+            if (err) return next(err);
+            res.render( 'learnerDropOut', {
+                learnerDropOut : results,
+                administrator : administrator
+            });
+      });
+    });
 };
 
 exports.showName = function (req, res, next) {
@@ -111,7 +149,7 @@ exports.showAttendance = function (req, res, next) {
     req.getConnection(function(err, connection){
         if (err) 
             return next(err);
-        connection.query('SELECT date FROM events', [], function(err, date) {
+        connection.query('SELECT DATE_FORMAT(date, GET_FORMAT(DATE,"EUR")) AS date FROM events', [], function(err, date) {
             if (err) return next(err);
         
         
@@ -172,10 +210,12 @@ exports.showFeedbackQuestionaire = function (req, res, next) {
     });
 };
 
-exports.showLearnerProfile = function (req, res, next) {
+/*exports.showLearnerProfile = function (req, res, next) {
     req.getConnection(function(err, connection){
         if (err) 
             return next(err);
+        connection.query('SELECT * FROM profile', [], function(err, results) {
+            if (err) return next(err);
         connection.query('SELECT * FROM profile', [], function(err, results) {
             if (err) return next(err);
             res.render( 'learnerProfile', {
@@ -185,13 +225,13 @@ exports.showLearnerProfile = function (req, res, next) {
             
       });
     });
-};
+};*/
 
 exports.showCurriculum = function (req, res, next) {
     req.getConnection(function(err, connection){
         if (err) 
             return next(err);
-        connection.query('SELECT * FROM programCurriculum', [], function(err, results) {
+        connection.query('SELECT *, DATE_FORMAT(month, GET_FORMAT(DATE,"EUR")) AS month FROM programCurriculum', [], function(err, results) {
             if (err) return next(err);
             res.render( 'programCurriculum', {
                 programCurriculum : results,
@@ -206,7 +246,7 @@ exports.showPlacement = function (req, res, next) {
     req.getConnection(function(err, connection){
         if (err) 
             return next(err);
-        connection.query('SELECT *, EXTRACT(YEAR_MONTH FROM month) AS month FROM placement', [], function(err, results) {
+        connection.query('SELECT *, DATE_FORMAT(month, GET_FORMAT(DATE,"EUR")) AS month FROM placement', [], function(err, results) {
             if (err) return next(err);
             res.render( 'placement', {
                 placement : results
@@ -335,6 +375,32 @@ exports.addFacilitator = function (req, res, next) {
     });
 };
 
+exports.addLearnerDropOut = function (req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err){ 
+            return next(err);
+        }
+        
+        var input = JSON.parse(JSON.stringify(req.body));
+        var data = {
+                    Idnumber : input.Idnumber,
+                    Name : input.Name,
+                    Surname : input.surname,
+                    LocationVenue : input.locationVenue,
+                    Date : input.date,
+                    Reason : input.reason
+            };
+            
+        connection.query('INSERT INTO learnerDropOut set ?', [data], function(err, results) {
+            if (err)
+                console.log("Error inserting : %s ", err );
+         
+                res.redirect('/learnerDropOut');
+        });
+    
+    });
+};
+
 
 exports.addDate = function (req, res, next) {
     req.getConnection(function(err, connection){
@@ -357,6 +423,27 @@ exports.addDate = function (req, res, next) {
     });
 };
 
+/*exports.addWeek = function (req, res, next) {
+    req.getConnection(function(err, connection){
+        if (err){ 
+            return next(err);
+        }
+        
+        var input = JSON.parse(JSON.stringify(req.body));
+        var data = {
+                    Count : input.count
+            };
+            
+        connection.query('INSERT INTO attendanceRecord count VALUES(" ")', [data], function(err, results) {
+            if (err)
+                console.log("Error inserting : %s ", err );
+         
+                res.redirect('/attendance');
+        });
+    
+    });
+};*/
+
 exports.addProgramCurriculum = function (req, res, next) {
     req.getConnection(function(err, connection){
         if (err){ 
@@ -366,7 +453,7 @@ exports.addProgramCurriculum = function (req, res, next) {
         var input = JSON.parse(JSON.stringify(req.body));
         var data = {
                     Module_name : input.module_name,
-                    facilitator : input.facilitator,
+                    facilitators : input.facilitators,
                     Assess_test : input.assess_test,
                     Assignment  : input.assignment,
                     Practical : input.practical,
@@ -378,7 +465,6 @@ exports.addProgramCurriculum = function (req, res, next) {
         connection.query('INSERT INTO programCurriculum set ?', [data], function(err, results) {
             if (err)
                 console.log("Error inserting : %s ", err );
-         
                 res.redirect('/programCurriculum');
         });
     
@@ -446,6 +532,7 @@ exports.addExitPlan = function (req, res, next) {
 
 exports.captureAttendance = function (req, res, next) {
     var id = req.params.Idnumber;
+    var data = JSON.parse(JSON.stringify(req.body));
     req.getConnection(function(err, connection){
         if (err){ 
             return next(err);
@@ -453,13 +540,48 @@ exports.captureAttendance = function (req, res, next) {
         connection.query('INSERT INTO attended SELECT Idnumber, surname, Name, accountNo, branch, course, location, facilitator FROM learner WHERE Idnumber = ?', [id], function(err, results) {
             if (err)
                 console.log("Error inserting : %s ", err );
-        connection.query('INSERT INTO attendanceRecord SELECT Idnumber, surname, Name, course, location, facilitator, date FROM learner, events WHERE Idnumber = ?', [id], function(err, results) {
+        connection.query('INSERT INTO attendanceRecord SELECT Idnumber, surname, Name, course, location, facilitator, COUNT(1+1) AS week FROM learner, events WHERE Idnumber = ?', [id], function(err, results) {
             if (err)
                 console.log("Error inserting : %s ", err );
-            console.log(results);
+        req.getConnection(function(err, connection){
+            connection.query('UPDATE attendanceRecord SET week = (week + 1)', [data], function(err, rows){
+                
+                if (err){
+                        console.log("Error Updating : %s ",err );
+                }
                 res.redirect( '/attendanceCaptureView')
+          });
+            });
         });
-        });
+    });
+    });
+};
+
+/*exports.getUpdateAttendanceCaptureView = function(req, res, next){
+    var id = req.params.Idnumber;
+    req.getConnection(function(err, connection){
+        connection.query('SELECT * FROM attendanceRecord WHERE Idnumber = ?', [id], function(err,rows){
+            if(err){
+                    console.log("Error Selecting : %s ",err );
+            }
+            res.render('viewAttendanceRecord',{page_title:" edit facilitator - Node.js", data : rows[0]});      
+        }); 
+    });
+};*/
+
+
+exports.updateViewAttendanceRecord = function(req, res, next){
+
+    var data = JSON.parse(JSON.stringify(req.body));
+        var id = req.params.Idnumber;
+        req.getConnection(function(err, connection){
+            connection.query('UPDATE attendanceRecord SET count=COUNT(count+1) WHERE Idnumber = ?', [data, id], function(err, rows){
+                
+                if (err){
+                        console.log("Error Updating : %s ",err );
+                }
+                res.redirect('/viewAttendanceRecord');
+            });
     });
 };
 
@@ -661,7 +783,7 @@ exports.getViewFacilitator = function(req, res, next){
 exports.getViewLocation = function(req, res, next){
   var id = req.params.Idnumber;
   req.getConnection(function(err, connection){
-    connection.query('SELECT location, EXTRACT(YEAR_MONTH FROM course_date) AS course_date, graduate, facilitator FROM learner where Idnumber = ?', [id], function(err,rows){
+    connection.query('SELECT location, DATE_FORMAT(course_date, GET_FORMAT(DATE,"EUR")) AS course_date, graduate, facilitator FROM learner where Idnumber = ?', [id], function(err,rows){
       if(err){
             console.log("Error Selecting : %s ",err );
       }
@@ -690,12 +812,11 @@ exports.getViewPersonalInfo = function(req, res, next){
 exports.getViewAttendanceRecord = function(req, res, next){
   var id = req.params.Idnumber;
   req.getConnection(function(err, connection){
-    connection.query('SELECT EXTRACT(WEEK FROM date) AS date FROM attendanceRecord where Idnumber = ?', [id], function(err,rows){
+    connection.query('select week from attendanceRecord',function(err,rows){
       if(err){
             console.log("Error Selecting : %s ",err );
       }
-      res.render('viewAttendanceRecord',{page_title:" view attendance Date - Node.js", data : rows[0]});  
-      console.log(rows);    
+      res.render('viewAttendanceRecord',{page_title:" view attendance Count - Node.js", data : rows[0]});    
     }); 
   });
 };
@@ -754,8 +875,10 @@ exports.deleteFacilitator = function(req, res, next){
 };
 
 exports.deleteDate = function(req, res, next){
+    var id = req.params.month;
     req.getConnection(function(err, connection){
-        connection.query('DELETE events FROM events',function(err,rows){
+        connection.query('DELETE events FROM events', function(err,rows){
+            
             if(err){
                     console.log("Error Selecting : %s ",err );
             }
@@ -832,6 +955,18 @@ exports.deleteExitPlan = function(req, res, next){
                     console.log("Error Selecting : %s ",err );
             }
             res.redirect('/exitPlan');
+        });
+    });
+};
+
+exports.deleteLearnerDropOut = function(req, res, next){
+    var id = req.params.Idnumber;
+    req.getConnection(function(err, connection){
+        connection.query('DELETE learnerDropOut FROM learnerDropOut WHERE Idnumber = ?', [id], function(err,rows){
+            if(err){
+                    console.log("Error Selecting : %s ",err );
+            }
+            res.redirect('/learnerDropOut');
         });
     });
 };
@@ -931,6 +1066,18 @@ exports.getUpdateQuestionaire = function(req, res, next){
     });
 };
 
+exports.getUpdateLeanerDropOut = function(req, res, next){
+    var id = req.params.Idnumber;
+    req.getConnection(function(err, connection){
+        connection.query('SELECT * FROM learnerDropOut WHERE Idnumber = ?', [id], function(err,rows){
+            if(err){
+                    console.log("Error Selecting : %s ",err );
+            }
+            res.render('editLearnerDropOut',{page_title:" edit LearnerDropOute - Node.js", data : rows[0]});      
+        }); 
+    });
+};
+
 
 exports.update = function(req, res, next){
 
@@ -1016,7 +1163,19 @@ exports.updateQuestionaire = function(req, res, next){
     });
 };
 
+exports.updateLearnerDropOut = function(req, res, next){
 
+    var data = JSON.parse(JSON.stringify(req.body));
+        var id = req.params.Idnumber;
+        req.getConnection(function(err, connection){
+            connection.query('UPDATE learnerDropOut SET ? WHERE Idnumber = ?', [data, id], function(err, rows){
+                if (err){
+                        console.log("Error Updating : %s ",err );
+                }
+                res.redirect('/learnerDropOut');
+            });
+    });
+};
 
 exports.getUpdateAttendanceCaptureView = function(req, res, next){
     var id = req.params.Idnumber;
@@ -1473,6 +1632,90 @@ exports.getSearchWork_location = function(req, res, next){
         else{
             searchValue = "%" + searchValue + "%";
             connection.query("SELECT Idnumber, Name, surname, work_location, remuneration_amount, activities, month, sign_attendance FROM placement WHERE work_location LIKE ?", [searchValue], processResults);
+        }
+    });
+};
+
+exports.getSearchCurriculum = function(req, res, next){
+    req.getConnection(function(err, connection){
+        if(err)
+            return next(err);
+
+        var searchValue = req.params.searchValue;
+        
+        var processResults = function(err, results){
+                if (err) return next(err);
+                                
+
+                res.render('curriculumsList', {
+                    //username: req.session.user,
+                    programCurriculum: results,
+                    //layout : false
+                });
+                
+            };
+        if(searchValue === "all"){
+            connection.query("SELECT * FROM programCurriculum", processResults )
+        }
+        else{
+            searchValue = "%" + searchValue + "%";
+            connection.query("SELECT * FROM programCurriculum WHERE facilitators LIKE ?", [searchValue], processResults);
+        }
+    });
+};
+
+exports.getSearchLocationVenue = function(req, res, next){
+    req.getConnection(function(err, connection){
+        if(err)
+            return next(err);
+
+        var searchValue = req.params.searchValue;
+        
+        var processResults = function(err, results){
+                if (err) return next(err);
+                                
+
+                res.render('locationVenuesList', {
+                    //username: req.session.user,
+                    learnerDropOut: results,
+                    //layout : false
+                });
+                
+            };
+        if(searchValue === "all"){
+            connection.query("SELECT * FROM learnerDropOut", processResults )
+        }
+        else{
+            searchValue = "%" + searchValue + "%";
+            connection.query("SELECT * FROM learnerDropOut WHERE locationVenue LIKE ?", [searchValue], processResults);
+        }
+    });
+};
+
+exports.getSearchTrainingLocation = function(req, res, next){
+    req.getConnection(function(err, connection){
+        if(err)
+            return next(err);
+
+        var searchValue = req.params.searchValue;
+        
+        var processResults = function(err, results){
+                if (err) return next(err);
+                                
+
+                res.render('trainingLocationsList', {
+                    //username: req.session.user,
+                    attendanceRecord: results,
+                    //layout : false
+                });
+                
+            };
+        if(searchValue === "all"){
+            connection.query("SELECT * FROM attendanceRecord", processResults )
+        }
+        else{
+            searchValue = "%" + searchValue + "%";
+            connection.query("SELECT * FROM attendanceRecord WHERE trainingVenue LIKE ?", [searchValue], processResults);
         }
     });
 };

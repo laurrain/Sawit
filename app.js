@@ -81,7 +81,10 @@ app.get('/learner_add', userMethods.checkUser, function(req,res){
 })
 app.post('/learner_add', learnersMethods.add);
 
-app.get('/attendance/deleteDate/:date',learnersMethods.deleteDate)
+app.get('/learnerDropOut_add', userMethods.checkUser, function(req,res){
+  res.render("learnerDropOut_add", {data:learnersMethods, administrator :administrator})
+})
+app.post('/learnerDropOut_add', learnersMethods.addLearnerDropOut);
 
 app.get('/attended/deleteAttendanceCaptureView',learnersMethods.deleteAttendanceCaptureView)
 
@@ -108,7 +111,6 @@ app.get('/date_add', userMethods.checkUser, function(req,res){
   res.render("date_add", {data:learnersMethods})
 })
 app.post('/attendance', userMethods.checkUser, learnersMethods.addDate);
-
 
 app.get('/admin_panel',userMethods.checkUser, userMethods.showAdminPanel);
  
@@ -137,9 +139,15 @@ app.get('/learnerProfile', userMethods.checkUser,  learnersMethods.showLearnerPr
 app.get('/programCurriculum', userMethods.checkUser, learnersMethods.showCurriculum);
 app.get('/placement', userMethods.checkUser, learnersMethods.showPlacement);
 app.get('/exitPlan', userMethods.checkUser,  learnersMethods.showExitPlan);
+app.get('/learnerDropOut', userMethods.checkUser,  learnersMethods.showLearnerDropOut);
 app.get('/feedbackQuestionaire', userMethods.checkUser, learnersMethods.showFeedbackQuestionaire);
 
 app.get('/learner/signed/:Idnumber',learnersMethods.captureAttendance);
+//app.get('/signed/:Idnumber',learnersMethods.AddWeekCount);
+app.get('/viewAttendanceRecord/signed/:Idnumber', learnersMethods.updateViewAttendanceRecord);
+app.post('/viewAttendanceRecord/update/:Idnumber', learnersMethods.updateViewAttendanceRecord);
+
+
 app.get('/placement_add/{{Idnumber}}/:Idnumber',learnersMethods.addPlacement);
 
 app.get('/learner/learnerProfile/:Idnumber',learnersMethods.getViewPersonalInfo);
@@ -166,6 +174,8 @@ app.get('/programCurriculum/editProgram/:module_name', learnersMethods.getUpdate
 app.post('/programCurriculum/updateProgram/:module_name', learnersMethods.updateProgram);
 app.get('/programCurriculum/deleteProgram/:module_name',learnersMethods.deleteProgram);
 
+app.get('/deleteDate',learnersMethods.deleteDate)  
+
 app.get('/placement/editPlacement/:Idnumber', learnersMethods.getUpdatePlacement);
 app.post('/placement/updatePlacement/:Idnumber', learnersMethods.updatePlacement);
 app.get('/placement/deletePlacement/:Idnumber',learnersMethods.deletePlacement);
@@ -173,6 +183,10 @@ app.get('/placement/deletePlacement/:Idnumber',learnersMethods.deletePlacement);
 app.get('/exitPlan/editExitPlan/:IDno', learnersMethods.getUpdateExitPlan);
 app.post('/exitPlan/updateExitPlan/:IDno', learnersMethods.updateExitPlan);
 app.get('/exitPlan/deleteExitPlan/:IDno',learnersMethods.deleteExitPlan);
+
+app.get('/learnerDropOut/editLearnerDropOut/:Idnumber', learnersMethods.getUpdateLeanerDropOut);
+app.post('/learnerDropOut/updateLearnerDropOut/:Idnumber', learnersMethods.updateLearnerDropOut);
+app.get('/learnerDropOut/deleteLearnerDropOut/:Idnumber',learnersMethods.deleteLearnerDropOut);
 
 app.get('/learner/view/:Idnumber', learnersMethods.getView);
 app.get('/learner/viewAccountNo/:Idnumber', learnersMethods.getViewAccountNo);
@@ -239,6 +253,15 @@ app.get('/lecturer/search/:searchValue', learnersMethods.getSearchLecturer);
 
 app.get('/placement/work_locationsList/:work_location', learnersMethods.getSearchWork_location);
 app.get('/work_location/search/:searchValue', learnersMethods.getSearchWork_location);
+
+app.get('/programCurriculum/curriculumsList/:facilitator', learnersMethods.getSearchCurriculum);
+app.get('/facilitators/search/:searchValue', learnersMethods.getSearchCurriculum);
+
+app.get('/learnerDropOut/locationVenuesList/:locationVenue', learnersMethods.getSearchLocationVenue);
+app.get('/locationVenue/search/:searchValue', learnersMethods.getSearchLocationVenue);
+
+app.get('/attendanceRecord/trainingLocationList/:trainingVenue', learnersMethods.getSearchTrainingLocation);
+app.get('/trainingVenue/search/:searchValue', learnersMethods.getSearchTrainingLocation);
 
 //app.get('excel', learnersMethods.showExcel);
     

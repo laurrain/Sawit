@@ -86,8 +86,7 @@ exports.signup = function(req, res, next){
         if(input.username == undefined || input.password == undefined){
 
             return res.render("signup", {
-                message : "Password or username can't be empty!",
-                layout : false
+                message : "Password or username can't be empty!"
             })
 
         }
@@ -112,16 +111,14 @@ exports.signup = function(req, res, next){
                 }
                 else{
                     res.render("signup", {
-                                            message : "Username alredy exists!",
-                                            layout : false
+                                            message : "Username alredy exists!"
                                             })
                 }
             });
         }
         else{
             res.render("signup", {
-                message : "Passwords don't match!",
-                layout : false
+                message : "Passwords don't match!"
             })
         }
     });
@@ -137,7 +134,6 @@ exports.authUser = function(req, res, next){
 
         connection.query('SELECT * FROM user WHERE username = ? ' , [user], function(err, results) {
             if (err) return next(err);
-             console.log(results+"......");
 
             if(results.length > 0){
                 bcrypt.compare(password, results[0].password,  function(err, reply){

@@ -1,0 +1,10 @@
+<table class="table" id="curriculumsList">
+    <tr>
+        <th class=".col-md-1">Module Name</th><th class=".col-md-1">Facilitator</th><th class=".col-md-1">Assessment Test</th><th class=".col-md-1">Assignment</th><th class=".col-md-1">Practical</th><th class=".col-md-1">Group Work</th><th class=".col-md-1">Month</th><th class=".col-md-1">Placement</th>
+    </tr>                          
+    {{#programCurriculum}} 
+        <tr>
+            <td>{{module_name}}</td><td>{{facilitators}}</td><td>{{assess_test}}</td><td>{{assignment}}</td><td>{{practical}}</td><td>{{group_work}}</td><td>{{month}}</td><td>{{placement}}</td><td><a href="/programCurriculum/editProgram/{{module_name}}">Edit</a></td><td><a href="/programCurriculum/deleteProgram/{{module_name}}">Delete</a></td>
+        </tr>
+    {{/programCurriculum}}               
+</table>

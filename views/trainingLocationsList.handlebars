@@ -1,0 +1,15 @@
+<table class="table" id="trainingLocationsList">
+    <tr>
+        <th>Surname</th>
+        <th>Name</th>
+        <th>Course</th>
+        <th>Location</th>
+        <th>Facilitator</th>
+        <th>Weeks</th>
+    </tr>                          
+    {{#attendanceRecord}} 
+        <tr>
+            <td>{{surname}}</td><td>{{Name}}</td><td>{{course}}</td><td>{{trainingVenue}}</td><td>{{facilitator}}</td><td>{{week}}</td>
+        </tr>
+    {{/attendanceRecord}}               
+</table>
