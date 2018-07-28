@@ -1,7 +1,7 @@
 {
   "name": "sawitDB",
   "repository": "nothing",
-  "version": "4.0.0",
+  "version": "6.0.0",
   "description": "sawitDB web app",
   "main": "app.js",
   "scripts": {
